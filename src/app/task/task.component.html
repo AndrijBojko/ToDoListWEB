@@ -1,0 +1,21 @@
+<div class="col s3">
+  <div class="card" appHover>
+    <div class="card-image">
+      <img src="{{ task.image }}">
+      <span 
+        class="card-title"
+        [ngClass]="{'marked': isMarked}"
+      >
+      {{ task.name | uppercase }}
+      </span>
+    </div>
+    <div class="card-content">
+      <p>{{ task.geo }}.</p>
+    </div>
+    <div class="card-action">
+        <a 
+         class="waves-effect waves-light btn"
+         (click)="onClick()"
+        >Check</a>
+    </div>
+  </div>
