@@ -13,7 +13,8 @@ import {RouterModule} from '@angular/router'
 
 const routes = [
   {path: '', component: HomePageComponent},
-  {path: 'create', component: CreatePageComponent}
+  {path: 'create', component: CreatePageComponent},
+  {path: 'edit/:id', component: CreatePageComponent}
 ]
 
 @NgModule({

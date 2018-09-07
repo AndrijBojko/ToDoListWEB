@@ -14,16 +14,9 @@ export class TaskComponent {
 
     isDeleted = false;
 
-    onClick(){
+    onDelete(){
         this.isDeleted = true;
         this.taskService.deleteTask(this.task)
-        .subscribe(
-          res => {
-            console.log(res);
-          },
-          err => {
-            console.log("Error occured", err);
-          }
-        );
+        .subscribe();
     }
 }

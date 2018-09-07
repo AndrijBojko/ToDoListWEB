@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { TaskService } from '../tasks.service';
 
 @Component({
@@ -8,26 +9,32 @@ import { TaskService } from '../tasks.service';
 })
 export class CreatePageComponent implements OnInit {
 
-  taskToCreate;
+  taskDescription;
+  taskToEditId;
 
-  constructor(private taskService:TaskService) { }
+  constructor(private taskService:TaskService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    
+    this.route.params.subscribe(params => {
+      this.taskToEditId = +params['id']
+   });
+
+   if(this.taskToEditId){
+     this.taskService.getTaskById(this.taskToEditId)
+      .subscribe(res => this.taskDescription = res.description);
+   }
   }
 
   onClick(){
-    this.taskService.postTask(this.taskToCreate)
-    .subscribe(
-      res => {
-        console.log(res);
-      },
-      err => {
-        console.log("Error occured", err);
-      }
-    );
 
-    this.taskToCreate = "";
+    if(this.taskToEditId){
+      this.taskService.updateTask(this.taskToEditId, this.taskDescription).subscribe();
+    }
+    else{
+      this.taskService.postTask(this.taskDescription).subscribe();
+    }
+
+    this.taskDescription = "";
   }
 
 }

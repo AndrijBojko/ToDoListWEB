@@ -12,7 +12,13 @@
     <div class="card-action">
         <a 
          class="waves-effect waves-light btn"
-         (click)="onClick()"
+         (click)="onDelete()"
         >Done</a>
+
+        <a
+         id="edit_btn" 
+         class="waves-effect waves-light btn"
+         routerLink="/edit/{{ task.id }}"
+        >Edit</a>
     </div>
   </div>
