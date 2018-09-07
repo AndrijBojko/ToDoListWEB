@@ -5,8 +5,6 @@ import {map} from 'rxjs/operators/';
 @Injectable()
 export class TaskService {
 
-    size = 8;
-
     constructor (private http: Http) {}
 
     getTasks(){
@@ -15,15 +13,24 @@ export class TaskService {
         .pipe(map(response => 
             response.map(u => {
                 return {
-                    name: u.isCompleted.toString(),
-                    geo: u.description,
+                    id: u.id,
+                    isCompleted: u.isCompleted.toString(),
+                    description: u.description,
                     image: '.\\assets\\background.jpg'
                 }
             })
         ))
     }
 
-    setSize(size){
-        this.size = size;
+    postTask(task){
+       return this.http.post('http://localhost:3001/api/Task', 
+        {
+            description: task,
+            isCompleted: false
+        })
     }
+
+    deleteTask(task){
+        return this.http.delete('http://localhost:3001/api/Task/'+ task.id)
+     }
 }

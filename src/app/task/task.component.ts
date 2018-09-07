@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core'
+import { TaskService } from '../tasks.service';
 
 @Component ({
     selector: 'app-task',
@@ -9,9 +10,20 @@ export class TaskComponent {
 
     @Input() task
 
-    isMarked = false;
+    constructor(private taskService:TaskService) { }
+
+    isDeleted = false;
 
     onClick(){
-        this.isMarked = true;
+        this.isDeleted = true;
+        this.taskService.deleteTask(this.task)
+        .subscribe(
+          res => {
+            console.log(res);
+          },
+          err => {
+            console.log("Error occured", err);
+          }
+        );
     }
 }

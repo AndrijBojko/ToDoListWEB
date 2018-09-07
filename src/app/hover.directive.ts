@@ -7,7 +7,7 @@ export class HoverDirective{
     @HostBinding('class.hovered') isHovered = false;
 
     @HostListener('mouseenter') onMouseEnter(){
-this.isHovered = true;
+        this.isHovered = true;
     }
 
     @HostListener('mouseleave') onMouseLeave(){

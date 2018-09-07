@@ -8,12 +8,12 @@ import { HoverDirective } from './hover.directive';
 import { FormsModule } from '@angular/forms';
 import {SearchPipe} from './search.pipe';
 import { HomePageComponent } from './home-page/home-page.component';
-import { SetupPageComponent } from './setup-page/setup-page.component';
+import { CreatePageComponent } from './create-page/create-page.component';
 import {RouterModule} from '@angular/router'
 
 const routes = [
   {path: '', component: HomePageComponent},
-  {path: 'setup', component: SetupPageComponent}
+  {path: 'create', component: CreatePageComponent}
 ]
 
 @NgModule({
@@ -23,7 +23,7 @@ const routes = [
     HoverDirective,
     SearchPipe,
     HomePageComponent,
-    SetupPageComponent
+    CreatePageComponent
   ],
   imports: [
     BrowserModule,
