@@ -1,14 +1,22 @@
-import {Http} from '@angular/http'
+import {Http, Headers, RequestOptionsArgs, RequestOptions} from '@angular/http'
 import { Injectable } from '@angular/core';
+//import { HttpHeaders } from '@angular/common/http';
 import {map} from 'rxjs/operators/'; 
 
 @Injectable()
 export class TaskService {
 
-    constructor (private http: Http) {}
+    constructor (private http: Http) {
+
+    }
 
     getTasks(){
-        return this.http.get('http://localhost:58946/api/Task')
+        let headers = new Headers({
+               'Content-Type':  'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+            })
+
+        return this.http.get('http://localhost:58946/api/Task', {headers})
         .pipe(map(response => response.json()))
         .pipe(map(response => 
             response.map(u => {

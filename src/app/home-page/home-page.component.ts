@@ -7,15 +7,10 @@ import { TaskService } from '../tasks.service';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  tasks = [];
-  searchStr = '';
 
   constructor(private taskService: TaskService){}
   
   ngOnInit(){
-    this.taskService.getTasks().subscribe(tasks => {
-      this.tasks = tasks
-    })
+    }
 
-  }
 }
