@@ -6,17 +6,18 @@ import {map} from 'rxjs/operators/';
 @Injectable()
 export class TaskService {
 
+    headers;
+
     constructor (private http: Http) {
-
-    }
-
-    getTasks(){
-        let headers = new Headers({
+        this.headers = new Headers({
                'Content-Type':  'application/json',
               'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
             })
+    }
 
-        return this.http.get('http://localhost:58946/api/Task', {headers})
+    getTasks(){
+
+        return this.http.get('http://localhost:58946/api/Task', {headers: this.headers})
         .pipe(map(response => response.json()))
         .pipe(map(response => 
             response.map(u => {
@@ -31,7 +32,7 @@ export class TaskService {
     }
 
     getTaskById(id){
-        return this.http.get('http://localhost:58946/api/Task/'+ id)
+        return this.http.get('http://localhost:58946/api/Task/'+ id, {headers: this.headers})
         .pipe(map(response => response.json()))
     }
 
@@ -40,7 +41,7 @@ export class TaskService {
         {
             description: task,
             isCompleted: false
-        })
+        }, {headers: this.headers})
     }
 
     updateTask(id, task){
@@ -48,10 +49,10 @@ export class TaskService {
          {
              description: task,
              isCompleted: false
-         })
+         }, {headers: this.headers})
      }
 
     deleteTask(task){
-        return this.http.delete('http://localhost:58946/api/Task/'+ task.id)
+        return this.http.delete('http://localhost:58946/api/Task/'+ task.id, {headers: this.headers})
      }
 }
