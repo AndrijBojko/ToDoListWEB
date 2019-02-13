@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TaskService } from '../tasks.service';
+import { TaskService } from '../../services/tasks.service';
 
 @Component({
   selector: 'app-create-page',

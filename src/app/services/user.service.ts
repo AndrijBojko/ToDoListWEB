@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { UserRegistration } from '../models/user.registration.interface';
-import { ConfigService } from '../config.service';
+import { ConfigService } from './config.service';
 
 import {BaseService} from "./base.service";
 
@@ -53,7 +53,6 @@ export class UserService extends BaseService {
       )
       .pipe(map(res => res.json()))
       .pipe(map(res => {
-
         localStorage.setItem('auth_token', res.auth_token);
         this.loggedIn = true;
         this._authNavStatusSource.next(true);

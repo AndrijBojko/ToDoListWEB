@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { catchError, finalize } from 'rxjs/operators';
 
 //import { UserRegistration } from '../../shared/models/user.registration.interface';
-import { UserService } from '../services/user.service';
-import { UserRegistration } from '../models/user.registration.interface';
+import { UserService } from '../../services/user.service';
+import { UserRegistration } from '../../models/user.registration.interface';
 
 @Component({
   selector: 'app-registration-form',

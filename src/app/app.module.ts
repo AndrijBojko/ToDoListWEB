@@ -2,21 +2,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { TaskComponent } from './task/task.component';
+import { TaskComponent } from './components/task/task.component';
 import { HttpModule } from '@angular/http';
-import { HoverDirective } from './hover.directive';
+import { HoverDirective } from './directives/hover.directive';
 import { FormsModule } from '@angular/forms';
-import {SearchPipe} from './search.pipe';
-import { HomePageComponent } from './home-page/home-page.component';
-import { CreatePageComponent } from './create-page/create-page.component';
+import {SearchPipe} from './pipes/search.pipe';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { CreatePageComponent } from './components/create-page/create-page.component';
 import {RouterModule} from '@angular/router';
-import { TasksBoardComponent } from './tasks-board/tasks-board.component';
-import { RegistrationFormComponent } from './registration-form/registration-form.component';
-import { LoginFormComponent } from './login-form/login-form.component'
+import { TasksBoardComponent } from './components/tasks-board/tasks-board.component';
+import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
+import { LoginFormComponent } from './components/login-form/login-form.component'
 import { EmailValidator } from './directives/email.validator.directive';
-import { SpinnerComponent } from './spinner/spinner.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 import { UserService } from './services/user.service';
-import { ConfigService } from './config.service';
+import { ConfigService } from './services/config.service';
 
 const routes = [
   {path: '', component: HomePageComponent},

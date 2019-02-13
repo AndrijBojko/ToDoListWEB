@@ -3,8 +3,8 @@ import { Component, OnInit,OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { catchError, finalize } from 'rxjs/operators';
 
-import { Credentials } from '../models/user.login.interface';
-import { UserService } from '../services/user.service';
+import { Credentials } from '../../models/user.login.interface';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login-form',
