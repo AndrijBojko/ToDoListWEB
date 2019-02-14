@@ -17,14 +17,17 @@ import { EmailValidator } from './directives/email.validator.directive';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { UserService } from './services/user.service';
 import { ConfigService } from './services/config.service';
+import { AuthGuard } from './guards/auth.guard';
+import { PreventAccessGuard } from './guards/prevent-access.guard';
+import { TaskService } from './services/tasks.service';
 
 const routes = [
-  {path: '', component: HomePageComponent},
-  {path: 'create', component: CreatePageComponent},
-  {path: 'edit/:id', component: CreatePageComponent},
-  { path: 'register', component: RegistrationFormComponent},
-  { path: 'login', component: LoginFormComponent},
-  { path: 'tasks', component: TasksBoardComponent}
+  {path: '', component: HomePageComponent, canActivate: [PreventAccessGuard]},
+  {path: 'create', component: CreatePageComponent, canActivate: [AuthGuard]},
+  {path: 'edit/:id', component: CreatePageComponent, canActivate: [AuthGuard]},
+  { path: 'register', component: RegistrationFormComponent, canActivate: [PreventAccessGuard]},
+  { path: 'login', component: LoginFormComponent, canActivate: [PreventAccessGuard]},
+  { path: 'tasks', component: TasksBoardComponent, canActivate: [AuthGuard]}
 ]
 
 @NgModule({
@@ -47,7 +50,7 @@ const routes = [
     FormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [UserService, ConfigService],
+  providers: [UserService, TaskService, ConfigService, AuthGuard, PreventAccessGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

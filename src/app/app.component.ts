@@ -1,12 +1,20 @@
 import { Component } from '@angular/core';
-import { TaskService } from './services/tasks.service';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [TaskService]
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
 
+  constructor(private userService:UserService) { }
+
+  isLoggedIn(){
+    return this.userService.isLoggedIn();
+  }
+
+  onLogOut(){
+     this.userService.logout();
+  }
 }

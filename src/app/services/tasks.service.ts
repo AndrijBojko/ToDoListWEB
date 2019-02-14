@@ -6,18 +6,16 @@ import {map} from 'rxjs/operators/';
 @Injectable()
 export class TaskService {
 
-    headers;
-
     constructor (private http: Http) {
-        this.headers = new Headers({
-               'Content-Type':  'application/json',
-              'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
-            })
     }
 
     getTasks(){
+        let headers = new Headers({
+            'Content-Type':  'application/json',
+           'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+         })
 
-        return this.http.get('http://localhost:58946/api/Task', {headers: this.headers})
+        return this.http.get('http://localhost:58946/api/Task', {headers})
         .pipe(map(response => response.json()))
         .pipe(map(response => 
             response.map(u => {
@@ -32,27 +30,47 @@ export class TaskService {
     }
 
     getTaskById(id){
-        return this.http.get('http://localhost:58946/api/Task/'+ id, {headers: this.headers})
+        let headers = new Headers({
+            'Content-Type':  'application/json',
+           'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+         })
+
+        return this.http.get('http://localhost:58946/api/Task/'+ id, {headers})
         .pipe(map(response => response.json()))
     }
 
     postTask(task){
+        let headers = new Headers({
+            'Content-Type':  'application/json',
+           'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+         })
+
        return this.http.post('http://localhost:58946/api/Task', 
         {
             description: task,
             isCompleted: false
-        }, {headers: this.headers})
+        }, {headers})
     }
 
     updateTask(id, task){
+        let headers = new Headers({
+            'Content-Type':  'application/json',
+           'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+         })
+
         return this.http.put('http://localhost:58946/api/Task/' + id, 
          {
              description: task,
              isCompleted: false
-         }, {headers: this.headers})
+         }, {headers})
      }
 
     deleteTask(task){
-        return this.http.delete('http://localhost:58946/api/Task/'+ task.id, {headers: this.headers})
+        let headers = new Headers({
+            'Content-Type':  'application/json',
+           'Authorization': `Bearer ${localStorage.getItem('auth_token')}`
+         })
+         
+        return this.http.delete('http://localhost:58946/api/Task/'+ task.id, {headers})
      }
 }

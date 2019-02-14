@@ -1,7 +1,9 @@
 
   <nav>
       <div class="nav-wrapper">
-        <a href="#" class="brand-logo">You private planning manager</a>
+        <a id="title" href="#" class="brand-logo">You private planning manager</a>
+
+        <a class="waves-effect waves-light btn"  *ngIf="isLoggedIn()" (click)="onLogOut()" routerLink="/">Log Out</a>
       </div>
     </nav>
 
